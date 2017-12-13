@@ -3,8 +3,8 @@ int sensorPin = P1_5;
 void setup()
 {
   Serial.begin(9600);
-  pinMode(P1_2, OUTPUT);
-  //pinMode(P1_3, OUTPUT);
+  pinMode(P1_2, OUTPUT); // connected to base pump
+  pinMode(P1_3, OUTPUT); // connected to acid pump
 }
 
 void loop()
@@ -15,13 +15,14 @@ void loop()
   delay(1000);
   if (pH > 8)  // solution is too basic, need to add acid
   {
-    //digitalWrite(P1_3, HIGH);
+    digitalWrite(P1_3, HIGH);
     digitalWrite(P1_2, LOW);
     
   }
   if (pH < 8) // solution is too acidic, need to add base
   {
     digitalWrite(P1_2, HIGH);
+    digitalWrite(P1_3, LOW);
     
   }
 }
